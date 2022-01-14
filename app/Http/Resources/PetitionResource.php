@@ -3,7 +3,6 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Http\Resources\PetitionCollection;
 
 class PetitionResource extends JsonResource
 {
@@ -17,7 +16,7 @@ class PetitionResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'title' => $this->title,
+            'title' => ucwords($this->title),
             'author' => $this->author
         ];
     }
