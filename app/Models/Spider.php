@@ -20,12 +20,30 @@ class Spider extends Model
 
     public function getHtml($url)
     {
-        return file_get_contents($url ?: $this->url);
+        return file_get_contents($url);
+    }
+
+    public function createClient()
+    {
+        return $this->client = new Client();
+    }
+
+    public function sendJson($url, $arr)
+    {
+        $this->createClient();
+        $response = $this->client->request(
+            'POST',
+            $url,
+            [
+                'json' => $arr,
+            ]
+        );
+        return $response->getBody();
     }
 
     public function getAsync()
     {
-        $this->client = new Client();
+        $this->createClient();
         $promise = $this->client->requestAsync(
             'GET',
             $this->url
