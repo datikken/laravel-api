@@ -14,7 +14,7 @@ class SpiderFactory extends Factory
     public function definition()
     {
         return [
-            'link' => ''
+            'link' => 'https://jsonplaceholder.typicode.com/albums/1/photos'
         ];
     }
 }

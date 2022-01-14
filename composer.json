@@ -13,6 +13,7 @@
         "laravel/nova": "*",
         "laravel/sanctum": "^2.8",
         "laravel/tinker": "^2.5",
+        "symfony/dom-crawler": "^6.0",
         "tightenco/ziggy": "^1.0"
     },
     "require-dev": {

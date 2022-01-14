@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Spider;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Petition;
@@ -19,5 +20,6 @@ class DatabaseSeeder extends Seeder
         User::factory(10)->create();
         Petition::factory(50)->create();
         Author::factory(10)->create();
+        Spider::factory(1)->create();
     }
 }

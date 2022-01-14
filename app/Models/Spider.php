@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Response;
+use Symfony\Component\DomCrawler\Crawler;
 
 class Spider extends Model
 {
@@ -41,6 +42,20 @@ class Spider extends Model
         return $response->getBody();
     }
 
+    public function getAllLinksFromHtml()
+    {
+        $crawler = new Crawler($this->getHtml($this->url));
+        $links = $crawler->filter('a')->each(function (Crawler $node, $i) {
+            return [
+                'class' => $node->attr('class'),
+                'text' => $node->text(),
+                'href' => $node->attr('href')
+            ];
+        });
+
+        return $links;
+    }
+
     public function getAsync()
     {
         $this->createClient();
@@ -48,10 +63,9 @@ class Spider extends Model
             'GET',
             $this->url
         );
-
         $promise->then(
             function (Response $resp) {
-                echo $resp->getBody();
+                echo $resp->getBody()->getContents();
             },
             function (RequestException $e) {
                 echo $e->getMessage();
