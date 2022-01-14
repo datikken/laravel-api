@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\PetitionResource;
 use App\Models\Petition;
 use Illuminate\Http\Request;
+use App\Http\Resources\PetitionCollection;
 
 class PetitionController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index()
     {
-        //
+//        return PetitionResource::collection(Petition::all());
+        return new PetitionCollection(Petition::all());
     }
 
     /**
