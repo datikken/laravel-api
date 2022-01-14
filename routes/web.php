@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Spider;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    $spider = new Spider(['url' => 'https://jsonplaceholder.typicode.com/albums/1/photos']);
+    $json = $spider->getHtmlByUrl($spider->url);
+
+    dd($spider);
+
     return view('welcome');
 });
