@@ -15,12 +15,10 @@ use App\Models\Spider;
 */
 
 Route::get('/', function () {
-    $spider = new Spider(['url' => 'https://jsonplaceholder.typicode.com/albums/1/photos']);
-    $spider->createClient($spider->url);
-    $spider->getAsync();
+    $url = 'https://www.jamieoliver.com/recipes/rice-recipes/my-singapore-style-fried-rice/';
 
-//    $json = $spider->getGuzzleHttp();
-//    $spider->getGuzzleHttp($spider->url);
+    $spider = new Spider(['url' => 'https://jsonplaceholder.typicode.com/albums/1/photos']);
+    $spider->getAsync();
 
 //    return view('welcome');
 });
