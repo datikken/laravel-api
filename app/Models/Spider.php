@@ -28,7 +28,7 @@ class Spider extends Model
         return $this->client = new Client();
     }
 
-    public function sendJson($url, $arr)
+    public function sendArrAsJson($url, $arr)
     {
         $this->createClient();
         $response = $this->client->request(
