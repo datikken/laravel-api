@@ -16,9 +16,11 @@ use App\Models\Spider;
 
 Route::get('/', function () {
     $spider = new Spider(['url' => 'https://jsonplaceholder.typicode.com/albums/1/photos']);
-    $json = $spider->getHtmlByUrl($spider->url);
+    $spider->createClient($spider->url);
+    $spider->getAsync();
 
-    dd($spider);
+//    $json = $spider->getGuzzleHttp();
+//    $spider->getGuzzleHttp($spider->url);
 
-    return view('welcome');
+//    return view('welcome');
 });
