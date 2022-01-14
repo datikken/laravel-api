@@ -14,7 +14,7 @@ class SpiderFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'link' => ''
         ];
     }
 }
