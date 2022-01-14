@@ -18,6 +18,11 @@ class Spider extends Model
         'url'
     ];
 
+    public function getHtml($url)
+    {
+        return file_get_contents($url ?: $this->url);
+    }
+
     public function getAsync()
     {
         $this->client = new Client();
