@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-class LinkSeeder extends Seeder
+class SpiderSeeder extends Seeder
 {
     /**
      * Run the database seeds.
