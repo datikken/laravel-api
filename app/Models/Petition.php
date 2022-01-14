@@ -18,4 +18,6 @@ class Petition extends Model
         'author',
         'signees',
     ];
+
+    protected $guarded = [];
 }
