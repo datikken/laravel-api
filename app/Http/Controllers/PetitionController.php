@@ -11,12 +11,12 @@ use Illuminate\Http\Response;
 class PetitionController extends Controller
 {
     /**
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
 //        return PetitionResource::collection(Petition::all());
-        return new PetitionCollection(Petition::all());
+        return response()->json(new PetitionCollection(Petition::all()),Response::HTTP_OK);
     }
 
     /**
@@ -98,10 +98,11 @@ class PetitionController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Petition  $petition
-     * @return Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(Petition $petition)
     {
-        //
+        $petition->delete();
+        return response()->json(null, Response::HTTP_NO_CONTENT);
     }
 }
