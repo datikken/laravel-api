@@ -5,6 +5,7 @@ namespace App\Nova;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Text;
 use Illuminate\Support\Str;
 
@@ -34,6 +35,7 @@ class Victim extends Resource
         'spider_id',
         'link',
         'html',
+        'server_status'
     ];
 
     /**
@@ -50,6 +52,7 @@ class Victim extends Resource
             Text::make('html')->displayUsing(function ($value) {
                 return Str::limit($value, 70);
             }),
+            Number::make('server_status'),
             BelongsTo::make('spider'),
         ];
     }
