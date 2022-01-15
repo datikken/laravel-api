@@ -15,7 +15,7 @@ class CreateSpidersTable extends Migration
     {
         Schema::create('spiders', function (Blueprint $table) {
             $table->id();
-            $table->longText('link')->nullable();
+            $table->longText('url')->nullable();
             $table->timestamps();
         });
     }

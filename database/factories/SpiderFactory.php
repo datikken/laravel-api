@@ -14,7 +14,7 @@ class SpiderFactory extends Factory
     public function definition()
     {
         return [
-            'link' => 'https://www.jamieoliver.com/'
+            'url' => 'https://www.jamieoliver.com/'
         ];
     }
 }

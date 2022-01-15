@@ -16,7 +16,7 @@ class CreateVictimsTable extends Migration
         Schema::create('victims', function (Blueprint $table) {
             $table->id();
             $table->string('link');
-            $table->longText('html');
+            $table->longText('html')->nullable();
             $table->timestamps();
 
             $table->foreignId('spider_id')->constrained('spiders');

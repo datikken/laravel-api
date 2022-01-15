@@ -2,17 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Models\Spider;
+use App\Models\Victim;
+use App\Http\Controllers\VictimController;
 
-Route::get('/', function () {
-//    $url = 'https://www.jamieoliver.com';
-//    $spider = new Spider(['url' => $url]);
-////    $spider->getAsync();
-//    $html = $spider->getHtml($spider->url);
-//    $links = $spider->getAllLinksFromHtml();
-//    $images = $spider->getAllImagesFromHtml();
-//    dd($images);
-    return Inertia::render('Welcome');
-});
+Route::get('/', [VictimController::class, 'index']);
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

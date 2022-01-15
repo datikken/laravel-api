@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
+use Illuminate\Support\Str;
 
 class Victim extends Resource
 {
@@ -46,7 +47,9 @@ class Victim extends Resource
         return [
             ID::make(__('ID'), 'id')->sortable(),
             Text::make('link'),
-            Text::make('html'),
+            Text::make('html')->displayUsing(function ($value) {
+                return Str::limit($value, 70);
+            }),
             BelongsTo::make('spider'),
         ];
     }
