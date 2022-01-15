@@ -3,18 +3,18 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 
-class Spider extends Resource
+class Victim extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = \App\Models\Spider::class;
+    public static $model = \App\Models\Victim::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -29,7 +29,10 @@ class Spider extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'link', 'html'
+        'id',
+        'spider_id',
+        'link',
+        'html',
     ];
 
     /**
@@ -42,9 +45,9 @@ class Spider extends Resource
     {
         return [
             ID::make(__('ID'), 'id')->sortable(),
-            Text::make('Link'),
-            Text::make('Html'),
-            HasMany::make('Victim')
+            Text::make('link'),
+            Text::make('html'),
+            BelongsTo::make('spider'),
         ];
     }
 

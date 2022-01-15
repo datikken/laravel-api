@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSpidersTable extends Migration
+class CreateVictimsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class CreateSpidersTable extends Migration
      */
     public function up()
     {
-        Schema::create('spiders', function (Blueprint $table) {
+        Schema::create('victims', function (Blueprint $table) {
             $table->id();
-            $table->longText('link')->nullable();
+            $table->string('link');
+            $table->longText('html');
             $table->timestamps();
+
+            $table->foreignId('spider_id')->constrained('spiders');
         });
     }
 
@@ -27,6 +30,6 @@ class CreateSpidersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('spiders');
+        Schema::dropIfExists('victims');
     }
 }
