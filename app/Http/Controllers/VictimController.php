@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Spider;
 use App\Models\Victim;
-use Illuminate\Support\Facades\Http;
 
 class VictimController extends Controller
 {
@@ -16,16 +15,9 @@ class VictimController extends Controller
             'spider_id' => $spider->id,
             'link' => $spider->url
         ]);
-        $victim->getHtml($spider->url);
-        $victim->save();
-        dd($victim->html);
 
-//    echo $victim->html;
-//    $spider->getAsync();
-//    $html = $spider->getHtml($spider->url);
-//    $links = $spider->getAllLinksFromHtml();
-//    $images = $spider->getAllImagesFromHtml();
-//    dd($images);
-//        return view('pages.recipes', ['recipes' => $victim]);
+        $links = $victim->getAllImagesFromHtml();
+
+        dump($links);
     }
 }
