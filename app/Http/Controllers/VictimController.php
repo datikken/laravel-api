@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Spider;
 use App\Models\Victim;
+use Illuminate\Support\Facades\Http;
 
 class VictimController extends Controller
 {

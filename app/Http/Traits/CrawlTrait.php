@@ -2,8 +2,7 @@
 
 namespace App\Http\Traits;
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Psr7\Response;
+use Illuminate\Support\Facades\Http;
 use Symfony\Component\DomCrawler\Crawler;
 
 trait CrawlTrait
@@ -18,7 +17,7 @@ trait CrawlTrait
 
     public function getHtml($url)
     {
-        $this->html = file_get_contents($url);
+        $this->html = Http::get($url)->getBody()->getContents();
         return $this->html;
     }
 
@@ -52,37 +51,5 @@ trait CrawlTrait
         });
 
         return $links;
-    }
-
-    public function sendArrAsJson($url, $arr)
-    {
-        $this->createClient();
-        $response = $this->client->request(
-            'POST',
-            $url,
-            [
-                'json' => $arr,
-            ]
-        );
-        return $response->getBody();
-    }
-
-
-    public function getAsync()
-    {
-        $this->createClient();
-        $promise = $this->client->requestAsync(
-            'GET',
-            $this->url
-        );
-        $promise->then(
-            function (Response $resp) {
-                echo $resp->getBody()->getContents();
-            },
-            function (RequestException $e) {
-                echo $e->getMessage();
-            }
-        );
-        return $promise->wait();
     }
 }
