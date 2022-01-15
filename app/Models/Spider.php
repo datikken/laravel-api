@@ -8,10 +8,11 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Response;
 use Symfony\Component\DomCrawler\Crawler;
+use App\Http\Traits\DownloadTrait;
 
 class Spider extends Model
 {
-    use HasFactory;
+    use HasFactory, DownloadTrait;
 
     private $client;
     private $html;
