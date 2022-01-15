@@ -14,14 +14,17 @@ class Spider extends Model
     use HasFactory;
 
     private $client;
+    private $html;
 
     protected $fillable = [
-        'url'
+        'url',
+        'html'
     ];
 
     public function getHtml($url)
     {
-        return file_get_contents($url);
+        $this->html = file_get_contents($url);
+        return $this->html;
     }
 
     public function createClient()
@@ -42,15 +45,33 @@ class Spider extends Model
         return $response->getBody();
     }
 
+    public function getAllImagesFromHtml()
+    {
+        $crawler = new Crawler($this->getHtml($this->url));
+        $images = $crawler->filter('img')->each(function (Crawler $node, $i) {
+            if ($node->attr('src')) {
+                return [
+                    'src' => $node->attr('src'),
+                    'class' => $node->attr('class'),
+                    'alt' => $node->attr('alt')
+                ];
+            }
+        });
+
+        return $images;
+    }
+
     public function getAllLinksFromHtml()
     {
         $crawler = new Crawler($this->getHtml($this->url));
         $links = $crawler->filter('a')->each(function (Crawler $node, $i) {
-            return [
-                'class' => $node->attr('class'),
-                'text' => $node->text(),
-                'href' => $node->attr('href')
-            ];
+            if ($node->attr('href')) {
+                return [
+                    'class' => $node->attr('class'),
+                    'text' => $node->text(),
+                    'href' => $node->attr('href')
+                ];
+            }
         });
 
         return $links;
