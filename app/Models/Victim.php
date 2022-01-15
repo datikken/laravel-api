@@ -15,6 +15,7 @@ class Victim extends Model
         'spider_id',
         'link',
         'html',
+        'server_status'
     ];
 
     public function spider()

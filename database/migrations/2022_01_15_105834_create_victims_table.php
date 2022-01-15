@@ -17,6 +17,7 @@ class CreateVictimsTable extends Migration
             $table->id();
             $table->string('link');
             $table->longText('html')->nullable();
+            $table->string('server_status')->nullable();
             $table->timestamps();
 
             $table->foreignId('spider_id')->constrained('spiders');
