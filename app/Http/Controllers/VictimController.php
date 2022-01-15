@@ -17,8 +17,10 @@ class VictimController extends Controller
         ]);
         $victim->getHtml($spider->url);
         $victim->save();
-        echo $victim->html;
-////    $spider->getAsync();
+        dd($victim->html);
+
+//    echo $victim->html;
+//    $spider->getAsync();
 //    $html = $spider->getHtml($spider->url);
 //    $links = $spider->getAllLinksFromHtml();
 //    $images = $spider->getAllImagesFromHtml();

@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
@@ -29,7 +30,7 @@ class Spider extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'link', 'html'
+        'id', 'link', 'created_at'
     ];
 
     /**
@@ -42,9 +43,9 @@ class Spider extends Resource
     {
         return [
             ID::make(__('ID'), 'id')->sortable(),
-            Text::make('Link'),
-            Text::make('Html'),
-            HasMany::make('Victim')
+            Text::make('Url'),
+            HasMany::make('Victim'),
+            Date::make('created_at')
         ];
     }
 
