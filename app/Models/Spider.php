@@ -4,11 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Http\Traits\DownloadTrait;
 
 class Spider extends Model
 {
-    use HasFactory, DownloadTrait;
+    use HasFactory;
 
     protected $fillable = [
         'url'
