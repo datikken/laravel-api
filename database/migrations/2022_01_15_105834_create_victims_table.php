@@ -15,12 +15,14 @@ class CreateVictimsTable extends Migration
     {
         Schema::create('victims', function (Blueprint $table) {
             $table->id();
-            $table->string('link');
+            $table->string('link')->index('link');
             $table->longText('html')->nullable();
             $table->integer('server_status')->nullable();
             $table->timestamps();
 
             $table->foreignId('spider_id')->constrained('spiders');
+
+            $table->unique(['link']);
         });
     }
 
